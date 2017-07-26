@@ -1,0 +1,40 @@
+{
+    "name": "react-custom-debounced-input",
+    "version": "1.0.0",
+    "description": "React wrapper component for custom inputs components with debounced onChange event",
+    "main": "./lib/index.js",
+    "author": "Johan Preynat <johan.preynat@gmail.com>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "prepublish": "babel --out-dir ./lib ./src",
+        "lint": "eslint ."
+    },
+    "devDependencies": {
+        "babel-cli": "^6.23.0",
+        "babel-core": "^6.23.1",
+        "babel-preset-es2015": "^6.22.0",
+        "babel-preset-react": "^6.23.0",
+        "babel-preset-stage-0": "^6.22.0",
+        "eslint": "^3.17.1",
+        "eslint-config-gitbook": "^2.0.1",
+        "react": "^15.6.1"
+    },
+    "peerDependencies": {
+        "react": "^15.4.2"
+    },
+    "keywords": [
+        "react",
+        "custom",
+        "input",
+        "debounce",
+        "wrapper"
+    ],
+    "homepage": "https://github.com/jpreynat/react-custom-debounced-input#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jpreynat/react-custom-debounced-input.git"
+    },
+    "bugs": {
+        "url": "https://github.com/jpreynat/react-custom-debounced-input/issues"
+    }
+}
