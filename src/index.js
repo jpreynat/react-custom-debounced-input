@@ -14,7 +14,9 @@ type DebouncedInputProps = {
     // Rendered React$Element, defaults to <input />
     component?: React$Element<*>,
     // Optional modifier for <value> before <onChange> is called
-    onBeforeChange?: (string | SyntheticInputEvent) => string
+    onBeforeChange?: (string | SyntheticInputEvent) => string,
+    // The component listens to onKeyDown and thus needs to explicitly call user's listener
+    onKeyDown?: (event: Event) => void
 };
 
 type DebouncedInputState = {
@@ -30,7 +32,8 @@ class DebouncedInput extends React.Component {
     static defaultProps = {
         onBeforeChange: update =>
             typeof update == 'string' ? update : update.target.value,
-        component: 'input'
+        component: 'input',
+        onKeyDown: () => {}
     };
 
     constructor(props: DebouncedInputProps) {
@@ -105,7 +108,14 @@ class DebouncedInput extends React.Component {
         this.dispatchChange();
     };
 
-    onKeyDown = (event: SyntheticKeyboardEvent) => {
+    onKeyDown = (event: Event) => {
+        const { onKeyDown } = this.props;
+        onKeyDown(event);
+
+        if (event.defaultPrevented) {
+            return;
+        }
+
         // We blur, if we press Enter or Escape
         if (event.keyCode === 27 || event.keyCode === 13) {
             this.blur();
