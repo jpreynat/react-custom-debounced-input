@@ -12,11 +12,11 @@ type DebouncedInputProps = {
     // Debounced callback when input is blurred or on pressing Enter
     onChange: (value: string) => *,
     // Rendered React$Element, defaults to <input />
-    component?: React$Element<*>,
+    component: Class<React$Component<*, *, *>> | string,
     // Optional modifier for <value> before <onChange> is called
-    onBeforeChange?: (string | SyntheticInputEvent) => string,
+    onBeforeChange: (string | SyntheticInputEvent) => string,
     // The component listens to onKeyDown and thus needs to explicitly call user's listener
-    onKeyDown?: (event: Event) => void
+    onKeyDown: (event: Event) => void
 };
 
 type DebouncedInputState = {
