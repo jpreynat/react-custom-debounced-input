@@ -16,7 +16,9 @@ type DebouncedInputProps = {
     // Optional modifier for <value> before <onChange> is called
     onBeforeChange: (string | SyntheticInputEvent) => string,
     // The component listens to onKeyDown and thus needs to explicitly call user's listener
-    onKeyDown: (event: Event) => void
+    onKeyDown: (event: Event) => void,
+    // Callback when content is blurred
+    onBlur?: () => *
 };
 
 type DebouncedInputState = {
@@ -33,7 +35,8 @@ class DebouncedInput extends React.Component {
         onBeforeChange: update =>
             typeof update == 'string' ? update : update.target.value,
         component: 'input',
-        onKeyDown: () => {}
+        onKeyDown: () => {},
+        onBlur: () => {}
     };
 
     constructor(props: DebouncedInputProps) {
@@ -74,7 +77,7 @@ class DebouncedInput extends React.Component {
         const { onChange, value: initialValue } = this.props;
         const { value } = this.state;
 
-        if (value == initialValue) {
+        if (value == initialValue && !force) {
             return;
         }
 
@@ -105,7 +108,12 @@ class DebouncedInput extends React.Component {
     };
 
     onBlur = (event: Event) => {
+        const { onBlur } = this.props;
         this.dispatchChange();
+        
+        if (onBlur) {
+            onBlur();   
+        }
     };
 
     onKeyDown = (event: Event) => {
