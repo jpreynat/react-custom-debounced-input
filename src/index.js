@@ -110,9 +110,9 @@ class DebouncedInput extends React.Component {
     onBlur = (event: Event) => {
         const { onBlur } = this.props;
         this.dispatchChange();
-        
+
         if (onBlur) {
-            onBlur();   
+            onBlur();
         }
     };
 
