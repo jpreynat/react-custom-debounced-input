@@ -77,7 +77,7 @@ class DebouncedInput extends React.Component {
         const { onChange, value: initialValue } = this.props;
         const { value } = this.state;
 
-        if (value == initialValue && !force) {
+        if (value == initialValue) {
             return;
         }
 
