@@ -1,6 +1,6 @@
 {
     "name": "react-custom-debounced-input",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "React wrapper component for custom inputs components with debounced onChange event",
     "main": "./lib/index.js",
     "author": "Johan Preynat <johan.preynat@gmail.com>",
@@ -31,7 +31,7 @@
         "debounce",
         "wrapper"
     ],
-    "homepage": "https://github.com/jpreynat/react-custom-debounced-input#readme",
+    "homepage": " ",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/jpreynat/react-custom-debounced-input.git"
