@@ -61,13 +61,19 @@ class DebouncedInput extends React.Component {
 
     // Imperative API
     focus() {
-        this.input.focus();
+        if (this.input) {
+            this.input.focus();
+        }
     }
     blur() {
-        this.input.blur();
+        if (this.input) {
+            this.input.blur();
+        }
     }
     select() {
-        this.input.select();
+        if (this.input) {
+            this.input.select();
+        }
     }
 
     /*
