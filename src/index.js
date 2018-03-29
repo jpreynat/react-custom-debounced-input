@@ -1,6 +1,8 @@
 /* @flow */
 
-import React from 'react';
+import * as React from 'react';
+
+type InputElement = *;
 
 /*
  * Input that trigger a onChange event only when blur or pressing enter
@@ -12,11 +14,16 @@ type DebouncedInputProps = {
     // Debounced callback when input is blurred or on pressing Enter
     onChange: (value: string) => *,
     // Rendered React$Element, defaults to <input />
-    component: Class<React$Component<*, *, *>> | string,
+    component: React.ComponentType<*> | string,
     // Optional modifier for <value> before <onChange> is called
     onBeforeChange: (string | SyntheticInputEvent) => string,
     // The component listens to onKeyDown and thus needs to explicitly call user's listener
     onKeyDown: (event: Event) => void,
+    // Key of the ref callback prop. Defaults to 'ref'. Some components use
+    // other conventions like 'inputRef' etc.
+    refProp: string,
+    // Returns the input component instance. Used in the ref callback.
+    refCallback: (ref: any) => ?InputElement,
     // Callback when content is blurred
     onBlur?: () => *
 };
@@ -25,16 +32,18 @@ type DebouncedInputState = {
     value: string
 };
 
-class DebouncedInput extends React.Component {
+class DebouncedInput extends React.Component<*, *> {
     input: *;
 
     props: DebouncedInputProps;
     state: DebouncedInputState;
 
     static defaultProps = {
-        onBeforeChange: update =>
+        onBeforeChange: (update: string | SyntheticInputEvent) =>
             typeof update == 'string' ? update : update.target.value,
         component: 'input',
+        refProp: 'ref',
+        refCallback: el => el,
         onKeyDown: () => {},
         onBlur: () => {}
     };
@@ -104,7 +113,7 @@ class DebouncedInput extends React.Component {
         });
     };
 
-    onChange = (update: string | SyntheticInputEvent) => {
+    onChange = (update: string | SyntheticInputEvent<*>) => {
         const { onBeforeChange } = this.props;
         const value = onBeforeChange(update);
 
@@ -138,8 +147,18 @@ class DebouncedInput extends React.Component {
 
     render() {
         const { value } = this.state;
-        const { component: InputComponent, ...props } = this.props;
+        const {
+            component: InputComponent,
+            refProp,
+            refCallback,
+            ...props
+        } = this.props;
         delete props.onBeforeChange;
+
+        // $FlowFixMe
+        props[(refProp: string)] = el => {
+            this.input = refCallback(el);
+        };
 
         return (
             <InputComponent
