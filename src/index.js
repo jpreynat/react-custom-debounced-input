@@ -155,7 +155,6 @@ class DebouncedInput extends React.Component<*, *> {
         } = this.props;
         delete props.onBeforeChange;
 
-        // $FlowFixMe
         props[(refProp: string)] = el => {
             this.input = refCallback(el);
         };
@@ -163,9 +162,6 @@ class DebouncedInput extends React.Component<*, *> {
         return (
             <InputComponent
                 {...props}
-                ref={el => {
-                    this.input = el;
-                }}
                 value={value}
                 onChange={this.onChange}
                 onBlur={this.onBlur}
