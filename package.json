@@ -31,7 +31,7 @@
         "debounce",
         "wrapper"
     ],
-    "homepage": " ",
+    "homepage": "https://github.com/jpreynat/react-custom-debounced-input",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/jpreynat/react-custom-debounced-input.git"
