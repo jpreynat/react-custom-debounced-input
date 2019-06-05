@@ -4,4 +4,4 @@ node_js:
 
 # Test and lint
 script:
-    - npm run lint
+    - npm run test
