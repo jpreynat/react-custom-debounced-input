@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-function defaultOnBeforeChange(
-    update: string | React.ChangeEvent<any>
-): string {
+function defaultOnBeforeChange(update: any): string {
     if (typeof update === 'string') {
         return update;
     } else {
@@ -21,7 +19,7 @@ function defaultOnBlur(event: React.FocusEvent) {
 export function useDebouncedInput(props: {
     value: string;
     onChange: (value: string) => void;
-    onBeforeChange?: (update: string | React.ChangeEvent<any>) => string;
+    onBeforeChange?: (update: any) => string;
     onBlur?: (event: React.FocusEvent) => void;
     onKeyDown?: (event: React.KeyboardEvent) => void;
     ref: React.Ref<{ blur(): void }>;
@@ -54,7 +52,7 @@ export function useDebouncedInput(props: {
         onChangeProps(value);
     };
 
-    const onChange = (update: string | React.ChangeEvent<any>) => {
+    const onChange = (update: any) => {
         setValue(onBeforeChange(update));
     };
 
@@ -104,7 +102,7 @@ function CustomDebouncedInput(
         // other conventions like 'inputRef', etc...
         componentRefProp?: string;
         // Optional modifier for <value> before <onChange> is called
-        onBeforeChange?: (update: string | React.ChangeEvent<any>) => string;
+        onBeforeChange?: (update: any) => string;
         // The component listens to onKeyDown and thus needs to explicitly call user's listener
         onKeyDown?: (event: React.KeyboardEvent) => void;
         // Callback when content is blurred
