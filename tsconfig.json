@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "declaration": true,
+        "target": "es5",
+        "outDir": "lib",
+        "lib": ["esnext", "dom"],
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "jsx": "react",
+        "strict": true
+    },
+    "include": [
+        "src/**/*"
+    ]
+}
