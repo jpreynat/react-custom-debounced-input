@@ -68,7 +68,7 @@ export function useDebouncedInput(
     /*
      * Propagate the update on blur, unless the passed <onBlur> prop prevents it
      */
-    const onBlur = (event: React.FocusEvent) => {
+    const onBlur = (event: React.FocusEvent<any>) => {
         onBlurProps(event);
         if (event.defaultPrevented) {
             return;
@@ -80,7 +80,7 @@ export function useDebouncedInput(
     /*
      * Propagate the update on enter or escape, unless the passed <onKeyDown> prop prevents it
      */
-    const onKeyDown = (event: React.KeyboardEvent) => {
+    const onKeyDown = (event: React.KeyboardEvent<any>) => {
         onKeyDownProps(event);
         if (event.defaultPrevented) {
             return;

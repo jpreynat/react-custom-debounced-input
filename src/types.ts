@@ -6,9 +6,9 @@ export interface DebouncedProps {
     // Optional modifier for <value> before <onChange> is called
     onBeforeChange?: (update: any) => string;
     // Callback when content is blurred
-    onBlur?: (event: React.FocusEvent) => void;
+    onBlur?: (event: React.FocusEvent<any>) => void;
     // Optional event preventDefaulter for the onKeyDown event
-    onKeyDown?: (event: React.KeyboardEvent) => void;
+    onKeyDown?: (event: React.KeyboardEvent<any>) => void;
     // Key of the ref callback prop. Defaults to 'ref'. Some components use
     // other conventions like 'inputRef', etc...
     componentRefProp?: string;
