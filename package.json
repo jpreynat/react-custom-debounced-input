@@ -1,12 +1,12 @@
 {
     "name": "react-custom-debounced-input",
-    "version": "1.0.4",
+    "version": "2.0.0",
     "description": "React wrapper component for custom inputs components with debounced onChange event",
     "main": "./lib/index.js",
     "author": "Johan Preynat <johan.preynat@gmail.com>",
     "license": "Apache-2.0",
     "scripts": {
-        "prepublish": "npm run test && tsc --build tsconfig.json",
+        "prepublish": "rm -rf ./lib && npm run test && tsc --build tsconfig.json",
         "lint": "tslint ./src/**",
         "check:types": "tsc",
         "test": "npm run lint && npm run check:types"
